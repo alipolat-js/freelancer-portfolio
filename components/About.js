@@ -24,7 +24,7 @@ const About = () => {
 
           <p className='text-xl font-semibold mt-4'>
             I met the <a className='text-blue-600' href='https://scoutli.co' title='Scoutli' rel='noopener noreferrer' target={'_blank'}>Scoutli</a> Team in June 2021 and we worked together for almost a year.
-            I created the landing page, the authentication system, and the first product dashboard from ground to sky. I've worked closely with the product team and backend developers to get the most out of this. While doing all this, I gained experience in project management, project architecture, project security and many other big jobs. great pride for me
+            I created the landing page, the authentication system, and the first product dashboard from ground to sky. I&apos;ve worked closely with the product team and backend developers to get the most out of this. While doing all this, I gained experience in project management, project architecture, project security and many other big jobs. great pride for me
             During this process, I started as a Frontend Developer, became the team leader of the team and left the team to work freelance at the end of 10 months.
           </p>
 

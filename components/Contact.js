@@ -6,7 +6,7 @@ const Contact = () => {
     <div className='py-10'>
       <div className='text-center md:text-start max-w-xl mx-auto'>
           <h3 className='text-center text-4xl sm:text-6xl md:text-5xl lg:text-7xl font-montserrat font-extrabold tracking-widest text-transparent bg-clip-text bg-gradient-to-br from-theme-text via-sky-200 to-theme-text'>
-            LET'S <br /> WORK <br /> TOGETHER
+            LET&apos;S <br /> WORK <br /> TOGETHER
           </h3>
 
           <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 text-center mt-8 mb-8 sm:mb-0'>
