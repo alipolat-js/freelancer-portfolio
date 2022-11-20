@@ -1,0 +1,32 @@
+{
+  "name": "freelancer-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "eslint": "8.27.0",
+    "eslint-config-next": "13.0.3",
+    "flickity": "^2.3.0",
+    "formik": "^2.2.9",
+    "graphql": "^16.6.0",
+    "graphql-request": "^5.0.0",
+    "next": "13.0.3",
+    "nodemailer": "^6.8.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-flickity-component": "^3.6.3",
+    "react-scroll": "^1.8.8",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.19",
+    "tailwindcss": "^3.2.4"
+  }
+}
