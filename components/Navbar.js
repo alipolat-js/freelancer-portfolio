@@ -1,10 +1,16 @@
 import React from "react";
 import { Link } from "react-scroll";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
 
   return (
-    <nav className='w-full fixed top-0 bg-theme-dark font-montserrat z-30'>
+    <motion.nav
+      className='w-full fixed top-0 bg-theme-dark font-montserrat z-30'
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: .5 }}
+    >
       <div className='container mx-auto px-8 flex py-4 items-center justify-between'>
         {/* Logo */}
         <Link spy to="home" className='cursor-pointer'>
@@ -73,7 +79,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   )
 }
 

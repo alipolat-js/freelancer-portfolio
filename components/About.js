@@ -1,12 +1,35 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { useAnimation, motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
+const aboutHeaderVariants = {
+  visible: { opacity: 1, translateX: 0, transition: { duration: .7 } },
+  hidden: { opacity: 0, translateX: 250 }
+};
 
 const About = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    "threshold": 0.2,
+    "triggerOnce": true
+  });
+
+  useEffect(() => {
+    inView ? controls.start("visible") : controls.start("hidden")
+  }, [controls, inView]);
+
   return (
     <div className='py-24 bg-white text-theme-extra-pale-gray-on-white' id='about'>
       <div className='container mx-auto px-8'>
-        <h2 className='max-w-2xl text-3xl md:text-3xl lg:text-4xl font-extrabold font-montserrat text-theme-pale-gray-on-white mb-2 md:ml-12'>
+        <motion.h2
+          className='max-w-2xl text-3xl md:text-3xl lg:text-4xl font-extrabold font-montserrat text-theme-pale-gray-on-white mb-2 md:ml-12'
+          variants={aboutHeaderVariants}
+          ref={ref}
+          initial="visible"
+          animate={controls}
+        >
           I am a Full Stack Developer with experience developing frontend and backend systems
-        </h2>
+        </motion.h2>
 
         <div className='md:w-3/4 max-w-4xl mx-auto mt-12'>
           <div className='font-montserrat text-3xl font-extrabold mb-4 text-theme-text'>About Me</div>

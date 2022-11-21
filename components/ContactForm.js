@@ -1,13 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import İmage from 'next/image';
 import { Formik, Form } from 'formik';
 import { MessageField, TextField } from './TextField';
 import * as Yup from 'yup';
+import { useAnimation, motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
+const svgVariants = {
+  visible: { opacity: 1, translateX: 0, transition: { duration: .7, } },
+  hidden: { opacity: 0, translateX: -200 }
+};
+
+const formVariants = {
+  visible: { opacity: 1, translateX: 0, transition: { duration: .7, } },
+  hidden: { opacity: 0, translateX: 200 }
+};
 
 const ContactForm = () => {
   let validate;
+  // for phone validate
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
+  // Validation Schema
   validate = Yup.object({
     name: Yup.string()
       .required('*zorunlu'),
@@ -24,6 +38,7 @@ const ContactForm = () => {
   const [submitting, setsubmitting] = useState(false)
   const [submissionSuccessful, setsubmissionSuccessful] = useState(false)
 
+  // Submit
   const handleSubmit = async (values, { resetForm }) => {
 
     setsubmitting(true)
@@ -49,12 +64,35 @@ const ContactForm = () => {
     })
   }
 
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    "threshold": 0.2,
+    "triggerOnce": true
+  });
+
+  useEffect(() => {
+    inView ? controls.start("visible") : controls.start("hidden")
+  }, [controls, inView]);
+
   return (
     <div className='py-20 w-full' id='contact'>
       <div className='w-full max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-8 '>
-        <İmage src='/assets/contact.svg' alt='Contact' width={350} height={350} className="mx-auto my-auto" />
+        <motion.div
+          variants={svgVariants}
+          ref={ref}
+          initial="hidden"
+          animate={controls}
+        >
+          <İmage src='/assets/contact.svg' alt='Contact' width={350} height={350} className="mx-auto my-auto" />
+        </motion.div>
 
-        <div className='w-full max-w-sm bg-theme-dark-box py-10 px-8 rounded-md mx-auto'>
+        <motion.div
+          className='w-full max-w-sm bg-theme-dark-box py-10 px-8 rounded-md mx-auto'
+          variants={formVariants}
+          ref={ref}
+          initial="hidden"
+          animate={controls}
+        >
           <Formik
             // initial values
             initialValues={{
@@ -95,7 +133,7 @@ const ContactForm = () => {
           <div className={`z-50 fixed top-16 left-8 bg-green-600 text-primary-light p-4 font-bold rounded-md duration-300 ${submissionSuccessful ? "opacity-1" : "opacity-0"}`} >
             Your message has been sent
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   )

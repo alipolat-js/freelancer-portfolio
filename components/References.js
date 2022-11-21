@@ -2,6 +2,18 @@ import React, { useEffect, useState } from 'react';
 import İmage from 'next/image'
 import Flickity from 'react-flickity-component'
 import { getReferences } from '../getData';
+import { useAnimation, motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
+const titleVariants = {
+  visible: { opacity: 1, scale: 1, transition: { duration: .7 } },
+  hidden: { opacity: 0, scale: 1.4 }
+};
+
+const descVariants = {
+  visible: { opacity: 1, translateY: 0, transition: { duration: .7, delay: .5 } },
+  hidden: { opacity: 0, translateY: 30 }
+};
 
 const References = () => {
   const [groupcells, setgroupcells] = useState()
@@ -51,16 +63,38 @@ const References = () => {
     }
   }
   
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    "threshold": 0.2,
+    "triggerOnce": true
+  });
+
+  useEffect(() => {
+    inView ? controls.start("visible") : controls.start("hidden")
+  }, [controls, inView]);
+
   return (
     <div className='pb-20 pt-40'>
       <div className='container mx-auto px-8 text-center'>
-        <h2 className='text-3xl sm:text-4xl font-extrabold mb-6 text-theme-text tracking-wide font-montserrat'>
+        <motion.h2
+          className='text-3xl sm:text-4xl font-extrabold mb-6 text-theme-text tracking-wide font-montserrat'
+          variants={titleVariants}
+          ref={ref}
+          initial="hidden"
+          animate={controls}
+        >
           INSPIRING PARTNERSHIPS FOR THE FUTURE
-        </h2>
+        </motion.h2>
 
-        <p className='text-xl text-theme-pale-gray-on-dark mb-8'>
+        <motion.p
+          className='text-xl text-theme-pale-gray-on-dark mb-8'
+          variants={descVariants}
+          ref={ref}
+          initial="hidden"
+          animate={controls}
+        >
           I have worked with many companies and individuals. Here are some of them.
-        </p>
+        </motion.p>
 
         {groupcells !== undefined &&
           <Flickity

@@ -2,6 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-scroll'
 import Flickity from 'react-flickity-component'
 import { getCustomerComments } from '../getData';
+import { useAnimation, motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
+const titleVariants = {
+  visible: { opacity: 1, x: 0, transition: { duration: .7 } },
+  hidden: { opacity: 0, x: -200 }
+};
+
+const descVariants = {
+  visible: { opacity: 1, translateY: 0, transition: { duration: .7, delay: .5 } },
+  hidden: { opacity: 0, translateY: 30 }
+};
 
 const CustomerComments = () => {
   // create data state for comments
@@ -15,7 +27,6 @@ const CustomerComments = () => {
     }
 
     getComments()
-
   }, [])
 
   if (data.length !== 0) {
@@ -29,18 +40,40 @@ const CustomerComments = () => {
     }
   }
 
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    "threshold": 0.2,
+    "triggerOnce": true
+  });
+
+  useEffect(() => {
+    inView ? controls.start("visible") : controls.start("hidden")
+  }, [controls, inView]);
+
   return (
     <div className='container px-8 mx-auto'>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
         <div>
-          <h3 className='text-4xl sm:text-5xl lg:text-6xl font-montserrat font-bold tracking-widest text-theme-text mb-8'>
+          <motion.h3
+            className='text-4xl sm:text-5xl lg:text-6xl font-montserrat font-bold tracking-widest text-theme-text mb-8'
+            variants={titleVariants}
+            ref={ref}
+            initial="hidden"
+            animate={controls}
+          >
             HAPPY  <br />
             CUSTOMERS
-          </h3>
+          </motion.h3>
 
-          <p className='text-xl sm:text-3xl font-bold mb-8'>
+          <motion.p
+            className='text-xl sm:text-3xl font-bold mb-8'
+            variants={descVariants}
+            ref={ref}
+            initial="hidden"
+            animate={controls}
+          >
             What my customers say about me
-          </p>
+          </motion.p>
 
           <Link to="contact" className='hidden md:block cursor-pointer text-theme-pale-gray-on-dark hover:text-white text-xl font-bold'>
             Contact me to get services<i className="fa-solid fa-arrow-down ml-4"></i>

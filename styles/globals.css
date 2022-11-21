@@ -9,7 +9,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* DEFAULTS */
 html,
 body {
   padding: 0;
@@ -83,7 +83,7 @@ html {
 
 
 
-/* Home Section */
+/* Home Section Divider */
 .custom-shape-divider-bottom-1668643722 {
   width: 100%;
   overflow: hidden;

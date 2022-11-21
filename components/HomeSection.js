@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { motion } from "framer-motion";
 
 const HomeSection = () => {
+  // Upload Effect States
   const [satisfaction, setsatisfaction] = useState(1)
   const [experienceYear, setexperienceYear] = useState(1)
   const [hours, sethours] = useState(1)
@@ -9,19 +11,19 @@ const HomeSection = () => {
     if (satisfaction < 100) {
       setTimeout(() => {
         setsatisfaction(satisfaction + 1)
-      }, 5);
+      }, 10);
     }
 
     if (experienceYear < 3) {
       setTimeout(() => {
         setexperienceYear(experienceYear + 1)
-      }, 300);
+      }, 600);
     }
 
     if (hours < 8) {
       setTimeout(() => {
         sethours(hours + 1)
-      }, 120);
+      }, 240);
     }
 
   })
@@ -29,7 +31,12 @@ const HomeSection = () => {
   return (
     <div className='pt-40' id='home'>
       <div className='container mx-auto px-8'>
-        <div className='text-center font-montserrat'>
+        <motion.div 
+          className='text-center font-montserrat'
+          initial={{ opacity: 0, scale: 1.5 }}
+          animate={{ opacity: 1 , scale: 1 }}
+          transition={{ duration: .7 }}
+        >
           <div className='text-lg md:text-xl lg:text-2xl text-theme-extra-pale-gray-on-dark'>Hello, I am</div>
           <h1 className='text-3xl md:text-4xl lg:text-5xl font-bold tracking-wider mt-2 md:mt-5'>
             ALİ POLAT
@@ -38,12 +45,17 @@ const HomeSection = () => {
               FULL STACK DEVELOPER
             </div>
           </h1>
-        </div>
+        </motion.div>
 
         <div className='grid grid-cols-1 md:grid-cols-2 mx-auto max-w-4xl mt-16'>
-          <p className='text-center md:text-left my-auto text-3xl sm:text-4xl lg:text-5xl font-montserrat font-extrabold tracking-widest text-transparent bg-clip-text bg-gradient-to-b from-sky-200 to-theme-text'>
+          <motion.p
+            className='text-center md:text-left my-auto text-3xl sm:text-4xl lg:text-5xl font-montserrat font-extrabold tracking-widest text-transparent bg-clip-text bg-gradient-to-b from-sky-200 to-theme-text'
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1 , x: 0 }}
+            transition={{ duration: .7, delay: .5 }}
+          >
             I DESIGN AND DEVELOP AMAZING WEB SITES AND APPLICATIONS
-          </p>
+          </motion.p>
 
           <div className='w-full text-center md:text-right mt-12 md:mt-0'>
             <div className='py-6'>

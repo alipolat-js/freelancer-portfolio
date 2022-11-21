@@ -5,20 +5,21 @@ export default function (req, res) {
 
   const { name, email, tel, message } = req.body;
 
+  // Set Nodemailer Transporter
   const transporter = nodemailer.createTransport({
-    port: 465,
-    host: "mx-out05.natrohost.com",
+    port: process.env.NEXT_PUBLIC_EMAIL_HOST,
+    host: process.env.NEXT_PUBLIC_EMAIL_HOST,
     auth: {
-      user: 'contact@alipolat.tech',
+      user: process.env.NEXT_PUBLIC_EMAIL,
       pass: process.env.NEXT_PUBLIC_EMAIL_PASSWORD,
     },
     secure: true,
   })
 
-  // For Me
+  // Mail Data For Me
   const meMailData = {
-    from: 'contact@alipolat.tech',
-    to: 'business@alipolat.tech',
+    from: process.env.NEXT_PUBLIC_EMAIL,
+    to: process.env.NEXT_PUBLIC_RECIPIENT_EMAIL,
     name: 'WEBSITE',
     subject: `${name} Sent You A Message.`,
     html: `
@@ -178,9 +179,9 @@ export default function (req, res) {
     `
   }
 
-  // For potential customer
+  // Mail Data For potential customer
   const potentialCustomerMailData = {
-    from: 'contact@alipolat.tech',
+    from: process.env.NEXT_PUBLIC_EMAIL,
     to: email,
     name: 'Ali POLAT',
     subject: "I Got Your Message",
@@ -396,7 +397,7 @@ export default function (req, res) {
     `
   }
 
-  // For Me
+  // Run For Me
   transporter.sendMail(meMailData, function (err, info) {
     if (err)
       console.log(err)
@@ -404,7 +405,7 @@ export default function (req, res) {
       console.log(info)
   })
 
-  // For potential customer
+  // Run For potential customer
   transporter.sendMail(potentialCustomerMailData, function (err, info) {
     if (err)
       console.log(err)
