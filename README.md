@@ -1,4 +1,4 @@
-# **alipolat.tech**
+# **Freelancer Portfolio**
 
 ## Overview
 This is a freelance portfolio application. It includes social accounts, contact addresses, testimonials and customer comments. It offers the possibility to manage the content using Hygraph. It is a web application based on NextJs.
