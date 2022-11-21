@@ -1,34 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# **alipolat.tech**
 
-## Getting Started
+## Overview
+This is a freelance portfolio application. It includes social accounts, contact addresses, testimonials and customer comments. It offers the possibility to manage the content using Hygraph. It is a web application based on NextJs.
 
-First, run the development server:
+## Features
+* Portfolio
+* Sharing and making changes to customer comments and references at any time with the Hygraph content management system
+* Hosting of social accounts and contact addresses
+* Ensuring communication between the application owner and the potential customer with the contact form inside
+*Privacy policy written to inform potential customers and site visitors about the security of their personal data.
+* Code optimized for performance, compliant with w3 standards and SEO compliant
 
-```bash
-npm run dev
-# or
-yarn dev
+## Live App
+> https://freelancer-portfolio.alipolat.tech/
+
+**_or_**
+
+## Run Locally
+_**You must have NODE and NPM installed on your computer for run.**_
+
+_! Before running, register at [Hygraph](https://hygraph.com/) and create the Schema below._
+
+Customer Comment Schema:
+![CustomerCommentSchema](https://raw.githubusercontent.com/alipolat-js/freelancer-portfolio/main/CustomerCommentSchema.png)
+
+<br />
+
+Reference Schema:
+![ReferencesSchema](https://raw.githubusercontent.com/alipolat-js/freelancer-portfolio/main/ReferenceSchema.png)
+
+
+```
+git clone https://github.com/alipolat-js/freelancer-portfolio.git
+
+cd freelancer-portfolio
+
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+_**If you run into version problems try this:**_
+```
+npm install --force
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+> **_Add your Hygraph API key, your email account for Nodemailer, your email account password, smtp host for email, smtp port for email and your recipient email address to the .env.local file in the home directory or run the application via terminal with your api key. <br/> (NEXT_PUBLIC_GRAPHCMS_URL=YOUR_HYGRAPH_URL)<br/>(NEXT_PUBLIC_EMAIL=YOUR_EMAIL)<br/>(NEXT_PUBLIC_EMAIL_PASSWORD=YOUR_EMAIL_PASSWORD)<br/>(NEXT_PUBLIC_EMAIL_HOST=YOUR_EMAIL_HOST)<br/>(NEXT_PUBLIC_EMAIL_PORT=YOUR_EMAIL_PORT)<br/>(NEXT_PUBLIC_RECIPIENT_EMAIL=YOUR_RECEIPENT_EMAIL)<br/>_**
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```
+npm run dev
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Build using :
+* **NextJs**
+* **GraphQL**
+* **NodeMailer**
+* **Formik - Yup**
+* **Flickity**
+* **Tailwind CSS**
+* **Framer Motion**
 
-## Learn More
+## Resources
+* [CMS](https://hygraph.com)
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
+_Thank you for considering contributing!
+Please use GitHub issues and Pull Requests for Contributing._
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Licence
+_No license. You can fork the project and use it as you wish. Good luck everyone_
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**_Designed & developed by Ali POLAT in November 2022._**
